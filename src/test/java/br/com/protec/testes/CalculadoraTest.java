@@ -1,16 +1,30 @@
 package br.com.protec.testes;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import br.com.protec.Calculadora;
 
 public class CalculadoraTest {
 
+	private Calculadora calc;
+	
+	@BeforeEach
+	public void setup() {
+		calc = new Calculadora();
+	}
+	
+	@AfterEach
+	public void eachTest() {
+	  System.out.println("each");
+	  
+	}
 	
 	@Test
 	public void testSomar() {
-		Calculadora calc = new Calculadora();
+		
 		calc.soma(2, 3);
 		
 		Assertions.assertTrue(calc.soma(2, 3) == 5);
@@ -19,7 +33,7 @@ public class CalculadoraTest {
 	
 	@Test
 	public void deveRetornarNumeroInteiroNaDivisao() {
-		Calculadora calc = new Calculadora();
+		
 		Assertions.assertEquals(3.33, calc.dividir(10, 3), 0.01);
 	}
 	

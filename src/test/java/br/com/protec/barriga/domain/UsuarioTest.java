@@ -3,6 +3,7 @@ package br.com.protec.barriga.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,11 +17,12 @@ public class UsuarioTest {
 		
 		Usuario usuario = new Usuario(1L, "Usuario valido", "user@email.com", "123456");
 		
-		assertEquals(1L, usuario.getId());
-		assertEquals("Usuario valido", usuario.getNome());
-		assertEquals("user@email.com", usuario.getEmail());
-		assertEquals("123456", usuario.getSenha());
-		
+		Assertions.assertAll("Teste de usuários", 
+				() -> assertEquals(12L, usuario.getId()),
+				() -> assertEquals("Usuario valido", usuario.getNome()),
+				() -> assertEquals("user@email.comx", usuario.getEmail()),
+				() -> assertEquals("123456", usuario.getSenha())
+				);
 	}
 	
 	

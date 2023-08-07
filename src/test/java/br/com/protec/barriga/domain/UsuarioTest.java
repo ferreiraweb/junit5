@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import br.com.protec.barriga.domain.exceptions.ValidationException;
+
 @DisplayName("Domínio : Usuário")
 public class UsuarioTest {
 
@@ -18,11 +20,18 @@ public class UsuarioTest {
 		Usuario usuario = new Usuario(1L, "Usuario valido", "user@email.com", "123456");
 		
 		Assertions.assertAll("Teste de usuários", 
-				() -> assertEquals(12L, usuario.getId()),
+				() -> assertEquals(1L, usuario.getId()),
 				() -> assertEquals("Usuario valido", usuario.getNome()),
-				() -> assertEquals("user@email.comx", usuario.getEmail()),
+				() -> assertEquals("user@email.com", usuario.getEmail()),
 				() -> assertEquals("123456", usuario.getSenha())
 				);
+	}
+	
+	@Test
+	@DisplayName("Deve rejeitar usuário sem nome")
+	public void deveRejeitarUsuarioSemNome() {
+		Assertions.assertThrows(ValidationException.class, 
+				() -> new Usuario(1L, null, "user@mail.com", "123456"));
 	}
 	
 	
